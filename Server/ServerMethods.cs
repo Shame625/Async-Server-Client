@@ -10,16 +10,12 @@ namespace Server
             byte[] messageB = BitConverter.GetBytes(messageNo);
             byte[] errorC = BitConverter.GetBytes(errorCode);
 
-            Array.Reverse(messageB);
-            Array.Reverse(errorC);
-            
-
-            byte[] data = new byte[] { messageB[1],
-                                messageB[0],
+            byte[] data = new byte[] { messageB[0],
+                                messageB[1],
                                 0x00,
                                 0x00,
-                                errorC[1],
-                                errorC[0]};
+                                errorC[0],
+                                errorC[1]};
 
             CalculateLen(ref data);
             return data;
