@@ -9,6 +9,12 @@ public sealed class NetworkManager : MonoBehaviour
     private static readonly NetworkManager instance = new NetworkManager();
     private static Socket _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
     private byte[] _buffer;
+    MainManager mainManager;
+
+    private void Awake()
+    {
+        mainManager = GetComponent<MainManager>();
+    }
 
     public bool LoopConnect()
     {
@@ -64,6 +70,32 @@ public sealed class NetworkManager : MonoBehaviour
 
             byte[] dataBuff = new byte[received];
             Array.Copy(_buffer, dataBuff, received);
+
+            byte[] temp_msg = new byte[2];
+            byte[] data_rec = new byte[dataBuff.Length - 4];
+            byte[] packet_len = new byte[2];
+
+            if (dataBuff.Length >= 4)
+            {
+                Array.Copy(dataBuff, temp_msg, 2);
+                Array.Copy(dataBuff, 2, packet_len, 0, 2);
+                Array.Copy(dataBuff, 4, data_rec, 0, dataBuff.Length - 4);
+            }
+
+            //Extracting packetLen and messageNo
+            UInt16 packetLen = BitConverter.ToUInt16(packet_len, 0);
+            UInt16 messageNo = BitConverter.ToUInt16(temp_msg, 0);
+            Debug.Log(messageNo);
+            switch (messageNo)
+            {
+                case MessageNO.USERNAME_RESPONSE:
+                    UInt16 status = BitConverter.ToUInt16(data_rec, 0);
+                    Debug.Log(status);
+                    break;
+
+                default:
+                    break;
+            }
 
             Debug.Log(PrintBytes(dataBuff));
 

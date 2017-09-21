@@ -5,3 +5,10 @@ C:\Users\Branimir\source\Server\Server\Server\obj\Debug\Server.csprojResolveAsse
 C:\Users\Branimir\source\Server\Server\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
 C:\Users\Branimir\source\Server\Server\Server\obj\Debug\Server.exe
 C:\Users\Branimir\source\Server\Server\Server\obj\Debug\Server.pdb
+C:\repo\Async-Server-Client\Server\bin\Debug\Server.exe.config
+C:\repo\Async-Server-Client\Server\bin\Debug\Server.exe
+C:\repo\Async-Server-Client\Server\bin\Debug\Server.pdb
+C:\repo\Async-Server-Client\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\repo\Async-Server-Client\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\repo\Async-Server-Client\Server\obj\Debug\Server.exe
+C:\repo\Async-Server-Client\Server\obj\Debug\Server.pdb

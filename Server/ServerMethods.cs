@@ -9,21 +9,30 @@ namespace Server
         {
             byte[] messageB = BitConverter.GetBytes(messageNo);
             byte[] errorC = BitConverter.GetBytes(errorCode);
-            byte[] packetLen = BitConverter.GetBytes((UInt16)(sizeof(UInt16) * 3));
 
             Array.Reverse(messageB);
             Array.Reverse(errorC);
-            Array.Reverse(packetLen);
+            
 
-            return new byte[] { messageB[0],
-                                messageB[1],
-                                packetLen[0],
-                                packetLen[1],
-                                errorC[0],
-                                errorC[1]};
+            byte[] data = new byte[] { messageB[1],
+                                messageB[0],
+                                0x00,
+                                0x00,
+                                errorC[1],
+                                errorC[0]};
+
+            CalculateLen(ref data);
+            return data;
         }
 
+        public static void CalculateLen(ref byte[] data)
+        {
+            byte[] packetLen = BitConverter.GetBytes((UInt16)(data.Length));
+            Array.Reverse(packetLen);
 
+            data[2] = packetLen[0];
+            data[2] = packetLen[1];
+        }
 
         public static string PrintBytes(this byte[] byteArray)
         {

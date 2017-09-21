@@ -9,6 +9,7 @@ public class UIMnanager : MonoBehaviour {
     public GameObject connectButton;
     public GameObject submitButton;
     public GameObject usernameField;
+    public GameObject welcomeText;
 
     NetworkManager Instance = NetworkManager.Instance;
 
@@ -47,5 +48,10 @@ public class UIMnanager : MonoBehaviour {
         }
 
         Instance.SendPacket(data);
+    }
+
+    public void SetWelcomeName()
+    {
+
     }
 }
