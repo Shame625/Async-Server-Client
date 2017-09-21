@@ -31,7 +31,7 @@ namespace Server
             Array.Reverse(packetLen);
 
             data[2] = packetLen[0];
-            data[2] = packetLen[1];
+            data[3] = packetLen[1];
         }
 
         public static string PrintBytes(this byte[] byteArray)
