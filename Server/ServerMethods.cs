@@ -28,10 +28,9 @@ namespace Server
         public static void CalculateLen(ref byte[] data)
         {
             byte[] packetLen = BitConverter.GetBytes((UInt16)(data.Length));
-            Array.Reverse(packetLen);
 
-            data[2] = packetLen[0];
-            data[3] = packetLen[1];
+            data[2] = packetLen[1];
+            data[3] = packetLen[0];
         }
 
         public static string PrintBytes(this byte[] byteArray)
